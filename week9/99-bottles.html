@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>99 Bottles of Beer</title>
+
+  <!-- This style is used to keep the text readable -->
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    p { margin-bottom: 12px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- This heading is used to show the title -->
+  <h1>99 Bottles of Beer Lyrics</h1>
+
+  <!-- This div is used to display all lyrics -->
+  <div id="lyrics"></div>
+
+  <script>
+    // This code is used to print all lines of the song
+    const output = document.getElementById("lyrics");
+
+    for (let i = 99; i >= 1; i--) {
+      let next = i - 1;
+
+      // This code is used to format the last line correctly
+      if (i === 1) {
+        next = "no more bottles";
+      } else {
+        next = next + " bottles";
+      }
+
+      // This code is used to build one verse
+      output.innerHTML +=
+        "<p>" + i + " bottles of beer on the wall, " + i + " bottles of beer.<br>" +
+        "Take one down and pass it around, " + next + " of beer on the wall.</p>";
+    }
+  </script>
+
+</body>
+</html>

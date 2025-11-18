@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors - 3 Rounds</title>
+
+  <!-- This style is used to keep layout simple -->
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 12px 20px; margin-right: 10px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+  <!-- This header is used to show the title -->
+  <h1>Rock Paper Scissors - 3 Rounds</h1>
+
+  <!-- These buttons are used for user input -->
+  <button onclick="play('rock')">Rock</button>
+  <button onclick="play('paper')">Paper</button>
+  <button onclick="play('scissors')">Scissors</button>
+
+  <!-- This area is used to show game results -->
+  <div id="result"></div>
+
+
+  <script>
+    // This code is used to track rounds
+    let round = 0;
+    let gameOver = false;
+
+    // This function is used to run the game each time the user clicks a button
+    function play(userChoice) {
+      if (gameOver === true) {
+        document.getElementById("result").textContent = "Game finished. Refresh page to play again.";
+        return;
+      }
+
+      round = round + 1;
+
+      // This code is used to create a new computer choice every round
+      const options = ["rock", "paper", "scissors"];
+      const computerChoice = options[Math.floor(Math.random() * 3)];
+
+      let message = "";
+
+      // Draw
+      if (userChoice === computerChoice) {
+        message = "Draw! You both chose " + userChoice + ".";
+      }
+
+      // User wins
+      if (userChoice === "rock" && computerChoice === "scissors") {
+        message = "You WIN! Rock beats Scissors.";
+        gameOver = true; // This stops the game early (Bonus)
+      }
+      if (userChoice === "paper" && computerChoice === "rock") {
+        message = "You WIN! Paper beats Rock.";
+        gameOver = true;
+      }
+      if (userChoice === "scissors" && computerChoice === "paper") {
+        message = "You WIN! Scissors beats Paper.";
+        gameOver = true;
+      }
+
+      // Computer wins
+      if (computerChoice === "rock" && userChoice === "scissors") {
+        message = "Computer wins! Rock beats Scissors.";
+      }
+      if (computerChoice === "paper" && userChoice === "rock") {
+        message = "Computer wins! Paper beats Rock.";
+      }
+      if (computerChoice === "scissors" && userChoice === "paper") {
+        message = "Computer wins! Scissors cuts Paper.";
+      }
+
+      // This code checks if 3 rounds are finished
+      if (round === 3) {
+        gameOver = true;
+      }
+
+      // This code shows full status on the page
+      document.getElementById("result").textContent =
+        "Round: " + round +
+        " | You: " + userChoice +
+        " | Computer: " + computerChoice +
+        " ? " + message;
+    }
+  </script>
+
+</body>
+</html>
+
