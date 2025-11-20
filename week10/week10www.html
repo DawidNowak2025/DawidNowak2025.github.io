@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- This code is used to ensure UTF-8 encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Guess Counter</title>
+
+    <style>
+        /* This code is used to style the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Random Number Guess Counter</h2>
+
+    <!-- This code is used to show random numbers -->
+    <p id="numbers"></p>
+
+
+    <label>Enter a number (1-10):</label>
+    <input type="number" id="guess" min="1" max="10">
+
+    <!-- This code is used to run the check -->
+    <button onclick="checkGuess()">Check</button>
+
+    <!-- This code is used to show output -->
+    <p id="result"></p>
+</div>
+
+<script>
+    // This code is used to create an array of 5 random numbers between 1–10
+    const numbers = [];
+    for (let i = 0; i < 5; i++) {
+        numbers.push(Math.floor(Math.random() * 10) + 1);
+    }
+
+    // This code is used to display the random numbers
+    document.getElementById("numbers").innerText =
+        "Random numbers: " + numbers.join(", ");
+
+    // This code is used to check how many times the guessed number appears
+    function checkGuess() {
+        const guess = parseInt(document.getElementById("guess").value);
+        let count = 0;
+
+        // This code is used to compare the guess to each number
+        for (let num of numbers) {
+            if (num === guess) {
+                count++;
+            }
+        }
+
+        // This code is used to show the result
+        document.getElementById("result").innerText =
+            "Your number appears " + count + " time(s) in the array.";
+    }
+</script>
+
+</body>
+</html>
